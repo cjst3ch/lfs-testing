@@ -1,0 +1,56 @@
+#usda 1.0
+(
+    defaultPrim = "SM_vczndjqja_VarE"
+    metersPerUnit = 0.009999999776482582
+    upAxis = "Z"
+)
+
+def Mesh "SM_vczndjqja_VarE" (
+    prepend apiSchemas = ["MaterialBindingAPI"]
+    assetInfo = {
+        asset identifier = @../../../../../../Users/Starlab/Desktop/VERTICAL_SLICE_USD_GqRavine/USD/Assets/Game/Fab/Megascans/Plants/Wild_Grass_vczndjqja/High/SM_vczndjqja_VarE.usda@
+        string name = "SM_vczndjqja_VarE"
+        dictionary unreal = {
+            string assetType = "StaticMesh"
+            string contentPath = "/Game/Fab/Megascans/Plants/Wild_Grass_vczndjqja/High/SM_vczndjqja_VarE.SM_vczndjqja_VarE"
+            string engineVersion = "5.5.4-40574608+++UE5+Release-5.5"
+            string exportTime = "2025.05.27-12.47.06"
+        }
+        string version = "7583318B91B1BC6C208C37963165CC18372E9A4F"
+    }
+)
+{
+    float3[] extent = [(-57.691597, -50.993233, -1.8556993), (51.240147, 58.06921, 56.876568)]
+    int[] faceVertexCounts = [3, 3, 3, 3, 3, 3, 3]
+    int[] faceVertexIndices = [6, 5, 3, 2, 1, 0, 8, 2, 0, 8, 7, 2, 7, 3, 2, 7, 6, 3, 5, 4, 3]
+    rel material:binding = </SM_vczndjqja_VarE/UnrealMaterial>
+    normal3f[] normals = [(-1.1342856e-14, -1, -1.3435881e-7), (-1.1342856e-14, -1, -1.3435881e-7), (-1.1342856e-14, -1, -1.3435881e-7), (3.352609e-14, -1, -1.3435886e-7), (3.352609e-14, -1, -1.3435886e-7), (3.352609e-14, -1, -1.3435886e-7), (-2.9135928e-14, -1, -1.3435886e-7), (-2.9135928e-14, -1, -1.3435886e-7), (-2.9135928e-14, -1, -1.3435886e-7), (2.060544e-14, -1, -1.343588e-7), (2.060544e-14, -1, -1.343588e-7), (2.060544e-14, -1, -1.343588e-7), (3.7196706e-15, -1, -1.3435884e-7), (3.7196706e-15, -1, -1.3435884e-7), (3.7196706e-15, -1, -1.3435884e-7), (6.6079137e-15, -1, -1.3435884e-7), (6.6079137e-15, -1, -1.3435884e-7), (6.6079137e-15, -1, -1.3435884e-7), (2.4139417e-14, -1, -1.3435884e-7), (2.4139417e-14, -1, -1.3435884e-7), (2.4139417e-14, -1, -1.3435884e-7)] (
+        interpolation = "faceVarying"
+    )
+    point3f[] points = [(46.348286, -0.000002918789, 21.723833), (51.240147, -0.0000011050149, 8.224357), (49.437298, 4.5605933e-8, -0.33943382), (-55.208515, 2.4617611e-8, -0.18322286), (-57.615948, -0.0000031876905, 23.7252), (-44.169487, -0.0000057802504, 43.020992), (-4.381478, -0.00000764187, 56.876568), (20.675663, -0.000006091711, 45.339115), (37.85547, -0.000004439379, 33.041214)]
+    color3f[] primvars:displayColor = [(0.008054426, 1, 1), (0.0039102486, 1, 1), (0, 1, 1), (0, 1, 1), (0.00028463037, 1, 1), (0.0011184438, 1, 1), (0.0022876721, 1, 1), (0, 1, 1), (0.0011184438, 1, 1), (0.0022876721, 1, 1), (0.00435058, 1, 1), (0, 1, 1), (0.00435058, 1, 1), (0, 1, 1), (0, 1, 1), (0.00435058, 1, 1), (0.008054426, 1, 1), (0, 1, 1), (0.0039102486, 1, 1), (0.0012377287, 1, 1), (0, 1, 1)] (
+        interpolation = "faceVarying"
+    )
+    float[] primvars:displayOpacity = [1, 0.75686276, 0, 0, 0.14509805, 0.38039216, 0.5803922, 0, 0.38039216, 0.5803922, 0.79607844, 0, 0.79607844, 0, 0, 0.79607844, 1, 0, 0.75686276, 0.41568628, 0] (
+        interpolation = "faceVarying"
+    )
+    texCoord2f[] primvars:st = [(0.20502047, 0.92347944), (0.051785998, 0.87011784), (0.009271677, 0.7037266), (0.4122913, 0.703125), (0.41923454, 0.7361065), (0.40039465, 0.78809667), (0.36768648, 0.831683), (0.4122913, 0.703125), (0.40039465, 0.78809667), (0.36768648, 0.831683), (0.30152237, 0.87904555), (0.4122913, 0.703125), (0.30152237, 0.87904555), (0.009271677, 0.7037266), (0.4122913, 0.703125), (0.30152237, 0.87904555), (0.20502047, 0.92347944), (0.009271677, 0.7037266), (0.051785998, 0.87011784), (0, 0.79580444), (0.009271677, 0.7037266)] (
+        interpolation = "faceVarying"
+    )
+    uniform token subdivisionScheme = "none"
+
+    def Material "UnrealMaterial" (
+        prepend references = @MI_vczndjqja_Billboard.usda@
+    )
+    {
+        token outputs:unreal:surface.connect = </SM_vczndjqja_VarE/UnrealMaterial/UnrealShader.outputs:out>
+
+        def Shader "UnrealShader"
+        {
+            uniform token info:implementationSource = "sourceAsset"
+            uniform asset info:unreal:sourceAsset = @/Game/Fab/Megascans/Plants/Wild_Grass_vczndjqja/High/MI_vczndjqja_Billboard.MI_vczndjqja_Billboard@
+            token outputs:out
+        }
+    }
+}
+

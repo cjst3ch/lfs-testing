@@ -1,0 +1,86 @@
+#usda 1.0
+(
+    defaultPrim = "MI_tbbqejqr_Billboard"
+    upAxis = "Z"
+)
+
+def Material "MI_tbbqejqr_Billboard" (
+    assetInfo = {
+        asset identifier = @../../../../../../Users/Starlab/Desktop/VERTICAL_SLICE_USD_GqRavine/USD/Assets/Game/Fab/Megascans/Plants/Dry_Grass_tbbqejqr/High/MI_tbbqejqr_Billboard.usda@
+        string name = "MI_tbbqejqr_Billboard"
+        dictionary unreal = {
+            string assetType = "MaterialInstanceConstant"
+            string contentPath = "/Game/Fab/Megascans/Plants/Dry_Grass_tbbqejqr/High/MI_tbbqejqr_Billboard.MI_tbbqejqr_Billboard"
+            string engineVersion = "5.5.4-40574608+++UE5+Release-5.5"
+            string exportTime = "2025.05.27-12.47.04"
+        }
+        string version = "91F19160FA22D2F39CC552B9359BD340A9C98478"
+    }
+)
+{
+    token inputs:stPrimvarName = "st"
+    token outputs:surface.connect = </MI_tbbqejqr_Billboard/SurfaceShader.outputs:surface>
+    token outputs:unreal:surface.connect = </MI_tbbqejqr_Billboard/UnrealShader.outputs:out>
+
+    def Shader "UnrealShader"
+    {
+        uniform token info:implementationSource = "sourceAsset"
+        uniform asset info:unreal:sourceAsset = @/Game/Fab/Megascans/Plants/Dry_Grass_tbbqejqr/High/MI_tbbqejqr_Billboard.MI_tbbqejqr_Billboard@
+        token outputs:out
+    }
+
+    def Shader "SurfaceShader"
+    {
+        uniform token info:id = "UsdPreviewSurface"
+        color3f inputs:diffuseColor.connect = </MI_tbbqejqr_Billboard/diffuseTexture.outputs:rgb>
+        float inputs:metallic = 0
+        normal3f inputs:normal.connect = </MI_tbbqejqr_Billboard/normalTexture.outputs:rgb>
+        float inputs:opacity.connect = </MI_tbbqejqr_Billboard/opacityTexture.outputs:r>
+        float inputs:roughness = 0.49803925
+        token outputs:surface
+    }
+
+    def Shader "PrimvarReader"
+    {
+        uniform token info:id = "UsdPrimvarReader_float2"
+        string inputs:varname.connect = </MI_tbbqejqr_Billboard.inputs:stPrimvarName>
+        token outputs:result
+    }
+
+    def Shader "diffuseTexture"
+    {
+        uniform token info:id = "UsdUVTexture"
+        float4 inputs:fallback = (0, 0, 0, 1)
+        asset inputs:file = @Textures/Game_Fab_Megascans_Plants_Dry_Grass_tbbqejqr_High_MI_tbbqejqr_Billboard_BaseColor.png@
+        token inputs:sourceColorSpace = "sRGB"
+        float2 inputs:st.connect = </MI_tbbqejqr_Billboard/PrimvarReader.outputs:result>
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        color3f outputs:rgb
+    }
+
+    def Shader "opacityTexture"
+    {
+        uniform token info:id = "UsdUVTexture"
+        float4 inputs:fallback = (1, 1, 1, 1)
+        asset inputs:file = @Textures/Game_Fab_Megascans_Plants_Dry_Grass_tbbqejqr_High_MI_tbbqejqr_Billboard_OpacityMask.png@
+        token inputs:sourceColorSpace = "raw"
+        float2 inputs:st.connect = </MI_tbbqejqr_Billboard/PrimvarReader.outputs:result>
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        float outputs:r
+    }
+
+    def Shader "normalTexture"
+    {
+        uniform token info:id = "UsdUVTexture"
+        float4 inputs:fallback = (0, 0, 1, 1)
+        asset inputs:file = @Textures/Game_Fab_Megascans_Plants_Dry_Grass_tbbqejqr_High_MI_tbbqejqr_Billboard_Normal.png@
+        token inputs:sourceColorSpace = "raw"
+        float2 inputs:st.connect = </MI_tbbqejqr_Billboard/PrimvarReader.outputs:result>
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        normal3f outputs:rgb
+    }
+}
+

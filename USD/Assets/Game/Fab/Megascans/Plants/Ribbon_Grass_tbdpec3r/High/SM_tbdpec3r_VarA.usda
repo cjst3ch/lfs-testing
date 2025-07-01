@@ -1,0 +1,56 @@
+#usda 1.0
+(
+    defaultPrim = "SM_tbdpec3r_VarA"
+    metersPerUnit = 0.009999999776482582
+    upAxis = "Z"
+)
+
+def Mesh "SM_tbdpec3r_VarA" (
+    prepend apiSchemas = ["MaterialBindingAPI"]
+    assetInfo = {
+        asset identifier = @../../../../../../Users/Starlab/Desktop/VERTICAL_SLICE_USD_GqRavine/USD/Assets/Game/Fab/Megascans/Plants/Ribbon_Grass_tbdpec3r/High/SM_tbdpec3r_VarA.usda@
+        string name = "SM_tbdpec3r_VarA"
+        dictionary unreal = {
+            string assetType = "StaticMesh"
+            string contentPath = "/Game/Fab/Megascans/Plants/Ribbon_Grass_tbdpec3r/High/SM_tbdpec3r_VarA.SM_tbdpec3r_VarA"
+            string engineVersion = "5.5.4-40574608+++UE5+Release-5.5"
+            string exportTime = "2025.05.27-12.47.08"
+        }
+        string version = "E55CBA57C4448AB951D0A442D5EB84820AE10623"
+    }
+)
+{
+    float3[] extent = [(-31.111801, -31.4198, -11.284608), (39.70945, 41.49436, 42.816208)]
+    int[] faceVertexCounts = [3, 3, 3, 3, 3, 3]
+    int[] faceVertexIndices = [5, 4, 0, 2, 1, 3, 4, 1, 0, 7, 5, 0, 4, 3, 1, 6, 5, 7]
+    rel material:binding = </SM_tbdpec3r_VarA/UnrealMaterial>
+    normal3f[] normals = [(-2.7456541e-15, -1, -1.3435886e-7), (-2.7456541e-15, -1, -1.3435886e-7), (-2.7456541e-15, -1, -1.3435886e-7), (0, -1, -1.3435883e-7), (0, -1, -1.3435883e-7), (0, -1, -1.3435883e-7), (1.4194478e-14, -1, -1.3435883e-7), (1.4194478e-14, -1, -1.3435883e-7), (1.4194478e-14, -1, -1.3435883e-7), (0, -1, -1.3435883e-7), (0, -1, -1.3435883e-7), (0, -1, -1.3435883e-7), (-1.4415706e-14, -1, -1.3435884e-7), (-1.4415706e-14, -1, -1.3435884e-7), (-1.4415706e-14, -1, -1.3435884e-7), (5.156789e-15, -1, -1.3435883e-7), (5.156789e-15, -1, -1.3435883e-7), (5.156789e-15, -1, -1.3435883e-7)] (
+        interpolation = "faceVarying"
+    )
+    point3f[] points = [(25.492971, -4.6850812e-7, 3.4869914), (7.6465683, 0.0000014837157, -11.042933), (-30.936468, 8.2325977e-7, -6.1273212), (-27.110046, -0.0000047050075, 35.018223), (-12.701497, -0.000005712038, 42.5133), (21.540876, -0.000005278355, 39.285503), (39.57475, -0.0000030815354, 22.935116), (35.663933, -0.0000019539227, 14.54257)]
+    color3f[] primvars:displayColor = [(0.02753817, 1, 1), (0.03826125, 1, 1), (0.00023502673, 1, 1), (0, 1, 1), (0, 1, 1), (0.01766172, 1, 1), (0.03826125, 1, 1), (0, 1, 1), (0.00023502673, 1, 1), (0.001949895, 1, 1), (0.02753817, 1, 1), (0.00023502673, 1, 1), (0.03826125, 1, 1), (0.01766172, 1, 1), (0, 1, 1), (0.004846407, 1, 1), (0.02753817, 1, 1), (0.001949895, 1, 1)] (
+        interpolation = "faceVarying"
+    )
+    float[] primvars:displayOpacity = [0.9254902, 1, 0.08235294, 0, 0, 0.8235294, 1, 0, 0.08235294, 0.34117648, 0.9254902, 0.08235294, 1, 0.8235294, 0, 0.5411765, 0.9254902, 0.34117648] (
+        interpolation = "faceVarying"
+    )
+    texCoord2f[] primvars:st = [(0.4706449, 0.94941914), (0.16354097, 0.97836775), (0.5060894, 0.628359), (0, 0.54213274), (0.3460333, 0.49804688), (0.03431742, 0.9111479), (0.16354097, 0.97836775), (0.3460333, 0.49804688), (0.5060894, 0.628359), (0.597308, 0.7275113), (0.4706449, 0.94941914), (0.5060894, 0.628359), (0.16354097, 0.97836775), (0.03431742, 0.9111479), (0.3460333, 0.49804688), (0.6323823, 0.80278015), (0.4706449, 0.94941914), (0.597308, 0.7275113)] (
+        interpolation = "faceVarying"
+    )
+    uniform token subdivisionScheme = "none"
+
+    def Material "UnrealMaterial" (
+        prepend references = @MI_tbdpec3r_Billboard.usda@
+    )
+    {
+        token outputs:unreal:surface.connect = </SM_tbdpec3r_VarA/UnrealMaterial/UnrealShader.outputs:out>
+
+        def Shader "UnrealShader"
+        {
+            uniform token info:implementationSource = "sourceAsset"
+            uniform asset info:unreal:sourceAsset = @/Game/Fab/Megascans/Plants/Ribbon_Grass_tbdpec3r/High/MI_tbdpec3r_Billboard.MI_tbdpec3r_Billboard@
+            token outputs:out
+        }
+    }
+}
+

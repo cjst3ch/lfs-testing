@@ -1,0 +1,97 @@
+#usda 1.0
+(
+    defaultPrim = "CorrugatedPipeMat"
+    upAxis = "Z"
+)
+
+def Material "CorrugatedPipeMat" (
+    assetInfo = {
+        asset identifier = @../../../../../../Users/Starlab/Desktop/VERTICAL_SLICE_USD_GqRavine/USD/Assets/Game/DARES_CustomContent/GraciesQuartersAssets/Materials/CorrugatedPipeMat.usda@
+        string name = "CorrugatedPipeMat"
+        dictionary unreal = {
+            string assetType = "Material"
+            string contentPath = "/Game/DARES_CustomContent/GraciesQuartersAssets/Materials/CorrugatedPipeMat.CorrugatedPipeMat"
+            string engineVersion = "5.5.4-40574608+++UE5+Release-5.5"
+            string exportTime = "2025.05.27-12.46.59"
+        }
+        string version = "2C01C8E859D7E0CA1A297A46740F7EAFF5A2F150"
+    }
+)
+{
+    token inputs:stPrimvarName = "st"
+    token outputs:surface.connect = </CorrugatedPipeMat/SurfaceShader.outputs:surface>
+    token outputs:unreal:surface.connect = </CorrugatedPipeMat/UnrealShader.outputs:out>
+
+    def Shader "UnrealShader"
+    {
+        uniform token info:implementationSource = "sourceAsset"
+        uniform asset info:unreal:sourceAsset = @/Game/DARES_CustomContent/GraciesQuartersAssets/Materials/CorrugatedPipeMat.CorrugatedPipeMat@
+        token outputs:out
+    }
+
+    def Shader "SurfaceShader"
+    {
+        uniform token info:id = "UsdPreviewSurface"
+        color3f inputs:diffuseColor.connect = </CorrugatedPipeMat/diffuseTexture.outputs:rgb>
+        float inputs:metallic.connect = </CorrugatedPipeMat/metallicTexture.outputs:r>
+        normal3f inputs:normal.connect = </CorrugatedPipeMat/normalTexture.outputs:rgb>
+        float inputs:roughness.connect = </CorrugatedPipeMat/roughnessTexture.outputs:r>
+        token outputs:surface
+    }
+
+    def Shader "PrimvarReader"
+    {
+        uniform token info:id = "UsdPrimvarReader_float2"
+        string inputs:varname.connect = </CorrugatedPipeMat.inputs:stPrimvarName>
+        token outputs:result
+    }
+
+    def Shader "diffuseTexture"
+    {
+        uniform token info:id = "UsdUVTexture"
+        float4 inputs:fallback = (0, 0, 0, 1)
+        asset inputs:file = @Textures/Game_DARES_CustomContent_GraciesQuartersAssets_Materials_CorrugatedPipeMat_BaseColor.png@
+        token inputs:sourceColorSpace = "sRGB"
+        float2 inputs:st.connect = </CorrugatedPipeMat/PrimvarReader.outputs:result>
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        color3f outputs:rgb
+    }
+
+    def Shader "metallicTexture"
+    {
+        uniform token info:id = "UsdUVTexture"
+        float4 inputs:fallback = (0, 0, 0, 1)
+        asset inputs:file = @Textures/Game_DARES_CustomContent_GraciesQuartersAssets_Materials_CorrugatedPipeMat_Metallic.png@
+        token inputs:sourceColorSpace = "raw"
+        float2 inputs:st.connect = </CorrugatedPipeMat/PrimvarReader.outputs:result>
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        float outputs:r
+    }
+
+    def Shader "roughnessTexture"
+    {
+        uniform token info:id = "UsdUVTexture"
+        float4 inputs:fallback = (0.5, 0.5, 0.5, 1)
+        asset inputs:file = @Textures/Game_DARES_CustomContent_GraciesQuartersAssets_Materials_CorrugatedPipeMat_Roughness.png@
+        token inputs:sourceColorSpace = "raw"
+        float2 inputs:st.connect = </CorrugatedPipeMat/PrimvarReader.outputs:result>
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        float outputs:r
+    }
+
+    def Shader "normalTexture"
+    {
+        uniform token info:id = "UsdUVTexture"
+        float4 inputs:fallback = (0, 0, 1, 1)
+        asset inputs:file = @Textures/Game_DARES_CustomContent_GraciesQuartersAssets_Materials_CorrugatedPipeMat_Normal.png@
+        token inputs:sourceColorSpace = "raw"
+        float2 inputs:st.connect = </CorrugatedPipeMat/PrimvarReader.outputs:result>
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        normal3f outputs:rgb
+    }
+}
+

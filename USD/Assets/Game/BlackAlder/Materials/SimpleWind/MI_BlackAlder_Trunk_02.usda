@@ -1,0 +1,98 @@
+#usda 1.0
+(
+    defaultPrim = "MI_BlackAlder_Trunk_02"
+    upAxis = "Z"
+)
+
+def Material "MI_BlackAlder_Trunk_02" (
+    assetInfo = {
+        asset identifier = @../../../../../../Users/Starlab/Desktop/VERTICAL_SLICE_USD_GqRavine/USD/Assets/Game/BlackAlder/Materials/SimpleWind/MI_BlackAlder_Trunk_02.usda@
+        string name = "MI_BlackAlder_Trunk_02"
+        dictionary unreal = {
+            string assetType = "MaterialInstanceConstant"
+            string contentPath = "/Game/BlackAlder/Materials/SimpleWind/MI_BlackAlder_Trunk_02.MI_BlackAlder_Trunk_02"
+            string engineVersion = "5.5.4-40574608+++UE5+Release-5.5"
+            string exportTime = "2025.05.27-12.46.54"
+        }
+        string version = "25107275E43485B119C48A7272E8C35F67EC543F"
+    }
+)
+{
+    token inputs:stPrimvarName = "st"
+    token outputs:surface.connect = </MI_BlackAlder_Trunk_02/SurfaceShader.outputs:surface>
+    token outputs:unreal:surface.connect = </MI_BlackAlder_Trunk_02/UnrealShader.outputs:out>
+
+    def Shader "UnrealShader"
+    {
+        uniform token info:implementationSource = "sourceAsset"
+        uniform asset info:unreal:sourceAsset = @/Game/BlackAlder/Materials/SimpleWind/MI_BlackAlder_Trunk_02.MI_BlackAlder_Trunk_02@
+        token outputs:out
+    }
+
+    def Shader "SurfaceShader"
+    {
+        uniform token info:id = "UsdPreviewSurface"
+        color3f inputs:diffuseColor.connect = </MI_BlackAlder_Trunk_02/diffuseTexture.outputs:rgb>
+        float inputs:metallic = 0
+        normal3f inputs:normal.connect = </MI_BlackAlder_Trunk_02/normalTexture.outputs:rgb>
+        float inputs:opacity.connect = </MI_BlackAlder_Trunk_02/opacityTexture.outputs:r>
+        float inputs:roughness.connect = </MI_BlackAlder_Trunk_02/roughnessTexture.outputs:r>
+        token outputs:surface
+    }
+
+    def Shader "PrimvarReader"
+    {
+        uniform token info:id = "UsdPrimvarReader_float2"
+        string inputs:varname.connect = </MI_BlackAlder_Trunk_02.inputs:stPrimvarName>
+        token outputs:result
+    }
+
+    def Shader "diffuseTexture"
+    {
+        uniform token info:id = "UsdUVTexture"
+        float4 inputs:fallback = (0, 0, 0, 1)
+        asset inputs:file = @Textures/Game_BlackAlder_Materials_SimpleWind_MI_BlackAlder_Trunk_02_BaseColor.png@
+        token inputs:sourceColorSpace = "sRGB"
+        float2 inputs:st.connect = </MI_BlackAlder_Trunk_02/PrimvarReader.outputs:result>
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        color3f outputs:rgb
+    }
+
+    def Shader "roughnessTexture"
+    {
+        uniform token info:id = "UsdUVTexture"
+        float4 inputs:fallback = (0.5, 0.5, 0.5, 1)
+        asset inputs:file = @Textures/Game_BlackAlder_Materials_SimpleWind_MI_BlackAlder_Trunk_02_Roughness.png@
+        token inputs:sourceColorSpace = "raw"
+        float2 inputs:st.connect = </MI_BlackAlder_Trunk_02/PrimvarReader.outputs:result>
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        float outputs:r
+    }
+
+    def Shader "opacityTexture"
+    {
+        uniform token info:id = "UsdUVTexture"
+        float4 inputs:fallback = (1, 1, 1, 1)
+        asset inputs:file = @Textures/Game_BlackAlder_Materials_SimpleWind_MI_BlackAlder_Trunk_02_OpacityMask.png@
+        token inputs:sourceColorSpace = "raw"
+        float2 inputs:st.connect = </MI_BlackAlder_Trunk_02/PrimvarReader.outputs:result>
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        float outputs:r
+    }
+
+    def Shader "normalTexture"
+    {
+        uniform token info:id = "UsdUVTexture"
+        float4 inputs:fallback = (0, 0, 1, 1)
+        asset inputs:file = @Textures/Game_BlackAlder_Materials_SimpleWind_MI_BlackAlder_Trunk_02_Normal.png@
+        token inputs:sourceColorSpace = "raw"
+        float2 inputs:st.connect = </MI_BlackAlder_Trunk_02/PrimvarReader.outputs:result>
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        normal3f outputs:rgb
+    }
+}
+

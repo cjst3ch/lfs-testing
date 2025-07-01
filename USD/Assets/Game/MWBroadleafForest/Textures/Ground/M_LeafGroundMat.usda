@@ -1,0 +1,73 @@
+#usda 1.0
+(
+    defaultPrim = "M_LeafGroundMat"
+    upAxis = "Z"
+)
+
+def Material "M_LeafGroundMat" (
+    assetInfo = {
+        asset identifier = @../../../../../../Users/Starlab/Desktop/VERTICAL_SLICE_USD_GqRavine/USD/Assets/Game/MWBroadleafForest/Textures/Ground/M_LeafGroundMat.usda@
+        string name = "M_LeafGroundMat"
+        dictionary unreal = {
+            string assetType = "Material"
+            string contentPath = "/Game/MWBroadleafForest/Textures/Ground/M_LeafGroundMat.M_LeafGroundMat"
+            string engineVersion = "5.5.4-40574608+++UE5+Release-5.5"
+            string exportTime = "2025.05.27-12.47.03"
+        }
+        string version = "3F4E9005917B53A46A3329336E8D193320AB404C"
+    }
+)
+{
+    token inputs:stPrimvarName = "st"
+    token outputs:surface.connect = </M_LeafGroundMat/SurfaceShader.outputs:surface>
+    token outputs:unreal:surface.connect = </M_LeafGroundMat/UnrealShader.outputs:out>
+
+    def Shader "UnrealShader"
+    {
+        uniform token info:implementationSource = "sourceAsset"
+        uniform asset info:unreal:sourceAsset = @/Game/MWBroadleafForest/Textures/Ground/M_LeafGroundMat.M_LeafGroundMat@
+        token outputs:out
+    }
+
+    def Shader "SurfaceShader"
+    {
+        uniform token info:id = "UsdPreviewSurface"
+        color3f inputs:diffuseColor.connect = </M_LeafGroundMat/diffuseTexture.outputs:rgb>
+        float inputs:metallic = 0
+        normal3f inputs:normal.connect = </M_LeafGroundMat/normalTexture.outputs:rgb>
+        float inputs:roughness = 1
+        token outputs:surface
+    }
+
+    def Shader "PrimvarReader"
+    {
+        uniform token info:id = "UsdPrimvarReader_float2"
+        string inputs:varname.connect = </M_LeafGroundMat.inputs:stPrimvarName>
+        token outputs:result
+    }
+
+    def Shader "diffuseTexture"
+    {
+        uniform token info:id = "UsdUVTexture"
+        float4 inputs:fallback = (0, 0, 0, 1)
+        asset inputs:file = @Textures/Game_MWBroadleafForest_Textures_Ground_M_LeafGroundMat_BaseColor.png@
+        token inputs:sourceColorSpace = "sRGB"
+        float2 inputs:st.connect = </M_LeafGroundMat/PrimvarReader.outputs:result>
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        color3f outputs:rgb
+    }
+
+    def Shader "normalTexture"
+    {
+        uniform token info:id = "UsdUVTexture"
+        float4 inputs:fallback = (0, 0, 1, 1)
+        asset inputs:file = @Textures/Game_MWBroadleafForest_Textures_Ground_M_LeafGroundMat_Normal.png@
+        token inputs:sourceColorSpace = "raw"
+        float2 inputs:st.connect = </M_LeafGroundMat/PrimvarReader.outputs:result>
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        normal3f outputs:rgb
+    }
+}
+

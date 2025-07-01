@@ -1,0 +1,56 @@
+#usda 1.0
+(
+    defaultPrim = "SM_vdknbbuha_VarG"
+    metersPerUnit = 0.009999999776482582
+    upAxis = "Z"
+)
+
+def Mesh "SM_vdknbbuha_VarG" (
+    prepend apiSchemas = ["MaterialBindingAPI"]
+    assetInfo = {
+        asset identifier = @../../../../../../Users/Starlab/Desktop/VERTICAL_SLICE_USD_GqRavine/USD/Assets/Game/Fab/Megascans/Plants/Dead_Shrubs_vdknbbuha/High/SM_vdknbbuha_VarG.usda@
+        string name = "SM_vdknbbuha_VarG"
+        dictionary unreal = {
+            string assetType = "StaticMesh"
+            string contentPath = "/Game/Fab/Megascans/Plants/Dead_Shrubs_vdknbbuha/High/SM_vdknbbuha_VarG.SM_vdknbbuha_VarG"
+            string engineVersion = "5.5.4-40574608+++UE5+Release-5.5"
+            string exportTime = "2025.05.27-12.47.05"
+        }
+        string version = "3E69787F233B09B05C3067DF08EF3178B36C0B0B"
+    }
+)
+{
+    float3[] extent = [(-45.1984, -28.512959, -2.2546659), (56.241333, 38.305157, 48.020035)]
+    int[] faceVertexCounts = [3, 3, 3, 3, 3, 3]
+    int[] faceVertexIndices = [5, 0, 6, 2, 1, 0, 3, 2, 0, 7, 6, 0, 4, 3, 0, 5, 4, 0]
+    rel material:binding = </SM_vdknbbuha_VarG/UnrealMaterial>
+    normal3f[] normals = [(0, -1, -1.3435883e-7), (0, -1, -1.3435883e-7), (0, -1, -1.3435883e-7), (0, -1, -1.3435884e-7), (0, -1, -1.3435884e-7), (0, -1, -1.3435884e-7), (0, -1, -1.3435884e-7), (0, -1, -1.3435884e-7), (0, -1, -1.3435884e-7), (0, -1, -1.3435884e-7), (0, -1, -1.3435884e-7), (0, -1, -1.3435884e-7), (-6.9858416e-15, -1, -1.3435884e-7), (-6.9858416e-15, -1, -1.3435884e-7), (-6.9858416e-15, -1, -1.3435884e-7), (5.3062273e-16, -1, -1.3435884e-7), (5.3062273e-16, -1, -1.3435884e-7), (5.3062273e-16, -1, -1.3435884e-7)] (
+        interpolation = "faceVarying"
+    )
+    point3f[] points = [(-7.889542, 3.0293427e-7, -2.2546656), (-44.21387, -1.191041e-9, 0.008864627), (-45.070686, -0.0000017455196, 12.991476), (-30.347338, -0.000005187396, 38.60852), (-4.366707, -0.000006442253, 47.948116), (37.11573, -0.000006069685, 45.175182), (56.178024, -9.3125374e-7, 6.9310937), (55.12226, -1.1888237e-9, 0.008848124)]
+    color3f[] primvars:displayColor = [(0.021728696, 1, 1), (0, 1, 1), (0.00043344128, 1, 1), (0.0011184438, 1, 1), (0, 1, 1), (0, 1, 1), (0.012412197, 1, 1), (0.0011184438, 1, 1), (0, 1, 1), (0, 1, 1), (0.00043344128, 1, 1), (0, 1, 1), (0.02753817, 1, 1), (0.012412197, 1, 1), (0, 1, 1), (0.021728696, 1, 1), (0.02753817, 1, 1), (0, 1, 1)] (
+        interpolation = "faceVarying"
+    )
+    float[] primvars:displayOpacity = [0.9411765, 0, 0.14509805, 0.27058825, 0, 0, 0.8039216, 0.27058825, 0, 0, 0.14509805, 0, 1, 0.8039216, 0, 0.9411765, 1, 0] (
+        interpolation = "faceVarying"
+    )
+    texCoord2f[] primvars:st = [(0.52616155, 0.30364823), (0.23803556, 0), (0.6481993, 0.05880767), (0, 0.09760654), (0.005485403, 0.01449126), (0.23803556, 0), (0.094259635, 0.26160812), (0, 0.09760654), (0.23803556, 0), (0.6414403, 0.014491141), (0.6481993, 0.05880767), (0.23803556, 0), (0.26058894, 0.32140064), (0.094259635, 0.26160812), (0.23803556, 0), (0.52616155, 0.30364823), (0.26058894, 0.32140064), (0.23803556, 0)] (
+        interpolation = "faceVarying"
+    )
+    uniform token subdivisionScheme = "none"
+
+    def Material "UnrealMaterial" (
+        prepend references = @MI_vdknbbuha_Billboard.usda@
+    )
+    {
+        token outputs:unreal:surface.connect = </SM_vdknbbuha_VarG/UnrealMaterial/UnrealShader.outputs:out>
+
+        def Shader "UnrealShader"
+        {
+            uniform token info:implementationSource = "sourceAsset"
+            uniform asset info:unreal:sourceAsset = @/Game/Fab/Megascans/Plants/Dead_Shrubs_vdknbbuha/High/MI_vdknbbuha_Billboard.MI_vdknbbuha_Billboard@
+            token outputs:out
+        }
+    }
+}
+

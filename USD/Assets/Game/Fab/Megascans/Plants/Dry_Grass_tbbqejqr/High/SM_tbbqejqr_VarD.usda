@@ -1,0 +1,56 @@
+#usda 1.0
+(
+    defaultPrim = "SM_tbbqejqr_VarD"
+    metersPerUnit = 0.009999999776482582
+    upAxis = "Z"
+)
+
+def Mesh "SM_tbbqejqr_VarD" (
+    prepend apiSchemas = ["MaterialBindingAPI"]
+    assetInfo = {
+        asset identifier = @../../../../../../Users/Starlab/Desktop/VERTICAL_SLICE_USD_GqRavine/USD/Assets/Game/Fab/Megascans/Plants/Dry_Grass_tbbqejqr/High/SM_tbbqejqr_VarD.usda@
+        string name = "SM_tbbqejqr_VarD"
+        dictionary unreal = {
+            string assetType = "StaticMesh"
+            string contentPath = "/Game/Fab/Megascans/Plants/Dry_Grass_tbbqejqr/High/SM_tbbqejqr_VarD.SM_tbbqejqr_VarD"
+            string engineVersion = "5.5.4-40574608+++UE5+Release-5.5"
+            string exportTime = "2025.05.27-12.47.06"
+        }
+        string version = "2531A74DF3B5571285DCCDB0354EC7E4FFDC10FE"
+    }
+)
+{
+    float3[] extent = [(-12.054136, -7.539437, -0.6922874), (10.115444, 7.7796283, 13.2299185)]
+    int[] faceVertexCounts = [3, 3, 3]
+    int[] faceVertexIndices = [3, 1, 4, 1, 0, 4, 2, 1, 3]
+    rel material:binding = </SM_tbbqejqr_VarD/UnrealMaterial>
+    normal3f[] normals = [(7.65586e-15, -1, -1.3435886e-7), (7.65586e-15, -1, -1.3435886e-7), (7.65586e-15, -1, -1.3435886e-7), (-2.6774393e-14, -1, -1.3435877e-7), (-2.6774393e-14, -1, -1.3435877e-7), (-2.6774393e-14, -1, -1.3435877e-7), (6.4130034e-16, -1, -1.3435883e-7), (6.4130034e-16, -1, -1.3435883e-7), (6.4130034e-16, -1, -1.3435883e-7)] (
+        interpolation = "faceVarying"
+    )
+    point3f[] points = [(-12.054136, -0.0000012436305, 9.256038), (4.714957, -0.0000017758066, 13.216895), (8.731668, 9.301507e-8, -0.69228846), (-7.0308824, -2.0987734e-9, 0.015620656), (-11.28207, -0.0000010189552, 7.5838346)]
+    color3f[] primvars:displayColor = [(0, 1, 1), (0.00075232174, 1, 1), (0.00036966513, 1, 1), (0.00075232174, 1, 1), (0.00046769137, 1, 1), (0.00036966513, 1, 1), (0, 1, 1), (0.00075232174, 1, 1), (0, 1, 1)] (
+        interpolation = "faceVarying"
+    )
+    float[] primvars:displayOpacity = [0, 1, 0.57254905, 1, 0.7019608, 0.57254905, 0, 1, 0] (
+        interpolation = "faceVarying"
+    )
+    texCoord2f[] primvars:st = [(0.62008774, 0.8122394), (0.76159513, 0.9712811), (0.56887174, 0.9034171), (0.76159513, 0.9712811), (0.5595703, 0.9235629), (0.56887174, 0.9034171), (0.8099863, 0.80371094), (0.76159513, 0.9712811), (0.62008774, 0.8122394)] (
+        interpolation = "faceVarying"
+    )
+    uniform token subdivisionScheme = "none"
+
+    def Material "UnrealMaterial" (
+        prepend references = @MI_tbbqejqr_Billboard.usda@
+    )
+    {
+        token outputs:unreal:surface.connect = </SM_tbbqejqr_VarD/UnrealMaterial/UnrealShader.outputs:out>
+
+        def Shader "UnrealShader"
+        {
+            uniform token info:implementationSource = "sourceAsset"
+            uniform asset info:unreal:sourceAsset = @/Game/Fab/Megascans/Plants/Dry_Grass_tbbqejqr/High/MI_tbbqejqr_Billboard.MI_tbbqejqr_Billboard@
+            token outputs:out
+        }
+    }
+}
+

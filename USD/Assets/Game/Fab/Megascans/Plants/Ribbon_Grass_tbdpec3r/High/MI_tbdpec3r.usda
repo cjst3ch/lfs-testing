@@ -1,0 +1,98 @@
+#usda 1.0
+(
+    defaultPrim = "MI_tbdpec3r"
+    upAxis = "Z"
+)
+
+def Material "MI_tbdpec3r" (
+    assetInfo = {
+        asset identifier = @../../../../../../Users/Starlab/Desktop/VERTICAL_SLICE_USD_GqRavine/USD/Assets/Game/Fab/Megascans/Plants/Ribbon_Grass_tbdpec3r/High/MI_tbdpec3r.usda@
+        string name = "MI_tbdpec3r"
+        dictionary unreal = {
+            string assetType = "MaterialInstanceConstant"
+            string contentPath = "/Game/Fab/Megascans/Plants/Ribbon_Grass_tbdpec3r/High/MI_tbdpec3r.MI_tbdpec3r"
+            string engineVersion = "5.5.4-40574608+++UE5+Release-5.5"
+            string exportTime = "2025.05.27-12.47.00"
+        }
+        string version = "955CE5117988B2830DA02411BF06153DB4570802"
+    }
+)
+{
+    token inputs:stPrimvarName = "st"
+    token outputs:surface.connect = </MI_tbdpec3r/SurfaceShader.outputs:surface>
+    token outputs:unreal:surface.connect = </MI_tbdpec3r/UnrealShader.outputs:out>
+
+    def Shader "UnrealShader"
+    {
+        uniform token info:implementationSource = "sourceAsset"
+        uniform asset info:unreal:sourceAsset = @/Game/Fab/Megascans/Plants/Ribbon_Grass_tbdpec3r/High/MI_tbdpec3r.MI_tbdpec3r@
+        token outputs:out
+    }
+
+    def Shader "SurfaceShader"
+    {
+        uniform token info:id = "UsdPreviewSurface"
+        color3f inputs:diffuseColor.connect = </MI_tbdpec3r/diffuseTexture.outputs:rgb>
+        float inputs:metallic = 0
+        normal3f inputs:normal.connect = </MI_tbdpec3r/normalTexture.outputs:rgb>
+        float inputs:opacity.connect = </MI_tbdpec3r/opacityTexture.outputs:r>
+        float inputs:roughness.connect = </MI_tbdpec3r/roughnessTexture.outputs:r>
+        token outputs:surface
+    }
+
+    def Shader "PrimvarReader"
+    {
+        uniform token info:id = "UsdPrimvarReader_float2"
+        string inputs:varname.connect = </MI_tbdpec3r.inputs:stPrimvarName>
+        token outputs:result
+    }
+
+    def Shader "diffuseTexture"
+    {
+        uniform token info:id = "UsdUVTexture"
+        float4 inputs:fallback = (0, 0, 0, 1)
+        asset inputs:file = @Textures/Game_Fab_Megascans_Plants_Ribbon_Grass_tbdpec3r_High_MI_tbdpec3r_BaseColor.png@
+        token inputs:sourceColorSpace = "sRGB"
+        float2 inputs:st.connect = </MI_tbdpec3r/PrimvarReader.outputs:result>
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        color3f outputs:rgb
+    }
+
+    def Shader "roughnessTexture"
+    {
+        uniform token info:id = "UsdUVTexture"
+        float4 inputs:fallback = (0.5, 0.5, 0.5, 1)
+        asset inputs:file = @Textures/Game_Fab_Megascans_Plants_Ribbon_Grass_tbdpec3r_High_MI_tbdpec3r_Roughness.png@
+        token inputs:sourceColorSpace = "raw"
+        float2 inputs:st.connect = </MI_tbdpec3r/PrimvarReader.outputs:result>
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        float outputs:r
+    }
+
+    def Shader "opacityTexture"
+    {
+        uniform token info:id = "UsdUVTexture"
+        float4 inputs:fallback = (1, 1, 1, 1)
+        asset inputs:file = @Textures/Game_Fab_Megascans_Plants_Ribbon_Grass_tbdpec3r_High_MI_tbdpec3r_OpacityMask.png@
+        token inputs:sourceColorSpace = "raw"
+        float2 inputs:st.connect = </MI_tbdpec3r/PrimvarReader.outputs:result>
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        float outputs:r
+    }
+
+    def Shader "normalTexture"
+    {
+        uniform token info:id = "UsdUVTexture"
+        float4 inputs:fallback = (0, 0, 1, 1)
+        asset inputs:file = @Textures/Game_Fab_Megascans_Plants_Ribbon_Grass_tbdpec3r_High_MI_tbdpec3r_Normal.png@
+        token inputs:sourceColorSpace = "raw"
+        float2 inputs:st.connect = </MI_tbdpec3r/PrimvarReader.outputs:result>
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        normal3f outputs:rgb
+    }
+}
+

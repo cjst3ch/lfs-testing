@@ -1,0 +1,97 @@
+#usda 1.0
+(
+    defaultPrim = "MI_ElectricalPoleMat"
+    upAxis = "Z"
+)
+
+def Material "MI_ElectricalPoleMat" (
+    assetInfo = {
+        asset identifier = @../../../../../../Users/Starlab/Desktop/VERTICAL_SLICE_USD_GqRavine/USD/Assets/Game/DARES_CustomContent/GraciesQuartersAssets/Materials/MasterMaterials/MI_ElectricalPoleMat.usda@
+        string name = "MI_ElectricalPoleMat"
+        dictionary unreal = {
+            string assetType = "MaterialInstanceConstant"
+            string contentPath = "/Game/DARES_CustomContent/GraciesQuartersAssets/Materials/MasterMaterials/MI_ElectricalPoleMat.MI_ElectricalPoleMat"
+            string engineVersion = "5.5.4-40574608+++UE5+Release-5.5"
+            string exportTime = "2025.05.27-12.46.55"
+        }
+        string version = "192CBC74CFF5C209C016E2FFCCC4B39E3ABE1603"
+    }
+)
+{
+    token inputs:stPrimvarName = "st"
+    token outputs:surface.connect = </MI_ElectricalPoleMat/SurfaceShader.outputs:surface>
+    token outputs:unreal:surface.connect = </MI_ElectricalPoleMat/UnrealShader.outputs:out>
+
+    def Shader "UnrealShader"
+    {
+        uniform token info:implementationSource = "sourceAsset"
+        uniform asset info:unreal:sourceAsset = @/Game/DARES_CustomContent/GraciesQuartersAssets/Materials/MasterMaterials/MI_ElectricalPoleMat.MI_ElectricalPoleMat@
+        token outputs:out
+    }
+
+    def Shader "SurfaceShader"
+    {
+        uniform token info:id = "UsdPreviewSurface"
+        color3f inputs:diffuseColor.connect = </MI_ElectricalPoleMat/diffuseTexture.outputs:rgb>
+        float inputs:metallic.connect = </MI_ElectricalPoleMat/metallicTexture.outputs:r>
+        normal3f inputs:normal.connect = </MI_ElectricalPoleMat/normalTexture.outputs:rgb>
+        float inputs:roughness.connect = </MI_ElectricalPoleMat/roughnessTexture.outputs:r>
+        token outputs:surface
+    }
+
+    def Shader "PrimvarReader"
+    {
+        uniform token info:id = "UsdPrimvarReader_float2"
+        string inputs:varname.connect = </MI_ElectricalPoleMat.inputs:stPrimvarName>
+        token outputs:result
+    }
+
+    def Shader "diffuseTexture"
+    {
+        uniform token info:id = "UsdUVTexture"
+        float4 inputs:fallback = (0, 0, 0, 1)
+        asset inputs:file = @Textures/Game_DARES_CustomContent_GraciesQuartersAssets_Materials_MasterMaterials_MI_ElectricalPoleMat_BaseColor.png@
+        token inputs:sourceColorSpace = "sRGB"
+        float2 inputs:st.connect = </MI_ElectricalPoleMat/PrimvarReader.outputs:result>
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        color3f outputs:rgb
+    }
+
+    def Shader "metallicTexture"
+    {
+        uniform token info:id = "UsdUVTexture"
+        float4 inputs:fallback = (0, 0, 0, 1)
+        asset inputs:file = @Textures/Game_DARES_CustomContent_GraciesQuartersAssets_Materials_MasterMaterials_MI_ElectricalPoleMat_Metallic.png@
+        token inputs:sourceColorSpace = "raw"
+        float2 inputs:st.connect = </MI_ElectricalPoleMat/PrimvarReader.outputs:result>
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        float outputs:r
+    }
+
+    def Shader "roughnessTexture"
+    {
+        uniform token info:id = "UsdUVTexture"
+        float4 inputs:fallback = (0.5, 0.5, 0.5, 1)
+        asset inputs:file = @Textures/Game_DARES_CustomContent_GraciesQuartersAssets_Materials_MasterMaterials_MI_ElectricalPoleMat_Roughness.png@
+        token inputs:sourceColorSpace = "raw"
+        float2 inputs:st.connect = </MI_ElectricalPoleMat/PrimvarReader.outputs:result>
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        float outputs:r
+    }
+
+    def Shader "normalTexture"
+    {
+        uniform token info:id = "UsdUVTexture"
+        float4 inputs:fallback = (0, 0, 1, 1)
+        asset inputs:file = @Textures/Game_DARES_CustomContent_GraciesQuartersAssets_Materials_MasterMaterials_MI_ElectricalPoleMat_Normal.png@
+        token inputs:sourceColorSpace = "raw"
+        float2 inputs:st.connect = </MI_ElectricalPoleMat/PrimvarReader.outputs:result>
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        normal3f outputs:rgb
+    }
+}
+
